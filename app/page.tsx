@@ -28,7 +28,7 @@ export default function Home() {
       {/* Hero */}
       <section className="px-6 py-24 text-center">
         <p className="mb-3 text-sm uppercase tracking-[0.3em] text-pink-400">
-          
+          BLACKPINK
         </p>
 
         <h1 className="text-6xl font-bold">ROSÉ Baby</h1>
