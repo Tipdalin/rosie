@@ -59,5 +59,33 @@ pipeline {
                 }
             }
         }
+        stage('Update GitOps') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'github-gitops',
+                        usernameVariable: 'GIT_USERNAME',
+                        passwordVariable: 'GIT_TOKEN'
+                    )
+                ]) {
+                    sh '''
+                        rm -rf gitops
+
+                        git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/Tipdalin/rosie-frontend-gitops.git gitops
+
+                        cd gitops
+
+                        sed -i "s/tag: \".*\"/tag: \"${DOCKER_TAG}\"/" nextjs-frontend/values.yaml
+
+                        git config user.name "Jenkins"
+                        git config user.email "jenkins@localhost"
+
+                        git add nextjs-frontend/values.yaml
+                        git commit -m "update frontend image to ${DOCKER_TAG}"
+                        git push origin main
+                    '''
+                }
+            }
+        }
     }
 }
