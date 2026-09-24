@@ -31,7 +31,7 @@ export default function Home() {
           BLACKPINK - CI/CD Pipeline
         </p>
 
-        <h1 className="text-6xl font-bold">ROSÉ</h1>
+        <h1 className="text-6xl font-bold">ROSÉ Baby</h1>
 
         <p className="mx-auto mt-6 max-w-xl text-gray-400">
           A small fan-style page celebrating Rosé, her music,
